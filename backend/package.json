@@ -1,0 +1,32 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "simple RestFul API",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelgeorgisva/DOT-challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelgeorgisva/DOT-challenge/issues"
+  },
+  "homepage": "https://github.com/michaelgeorgisva/DOT-challenge#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mariadb": "^3.0.0",
+    "sequelize": "^6.21.3",
+    "store2": "^2.14.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19",
+    "supertest": "^6.2.4"
+  }
+}
