@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 app.use('/user', userRouter)
 app.use('/products', productRouter)
 app.use('/cart', cartRouter)
-app.use('/order', orderRouter)
+app.use('/orders', orderRouter)
 
 app.listen(PORT, () => {
   console.log(`App running on ${PORT}`);

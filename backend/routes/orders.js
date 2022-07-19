@@ -11,7 +11,7 @@ router.route('/')
   .post(authMiddleware, addOrder);
 
 router.route('/:userId')
-  .get(getAllOrder);
+  .get(authMiddleware, getAllOrder);
 // .put(adminMiddleware, updateProduct);
 
 router.route('/:userId/:orderId')

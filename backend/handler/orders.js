@@ -31,7 +31,7 @@ const addOrder = async (req, res) => {
     .then(() => {
       store.remove(cartCache)
       return res.status(201).send({
-        message: 'succesful',
+        message: 'successful',
       })
     })
     .catch((err) => {

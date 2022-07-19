@@ -122,7 +122,7 @@ const getUserById = (req, res) => {
           });
         }
         return res.send({
-          message: 'sucessfull',
+          message: 'successful',
           data: user,
         });
       })
@@ -149,7 +149,7 @@ const update = (req, res) => {
           .then((user) => {
             if (user[0] === 1) {
               return res.send({
-                message: 'sucessfull',
+                message: 'successful',
               });
             }
             return res.send({

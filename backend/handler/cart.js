@@ -25,7 +25,7 @@ const addToCart = (req, res) => {
       Cart.push({ ...product['dataValues'] });
       store.set(cartCache, Cart);
       console.log(store.get(cartCache));
-      return res.send({
+      return res.status(201).send({
         message: 'successful'
       })
     })
