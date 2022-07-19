@@ -1,5 +1,5 @@
 const store = require('store2');
-const Cart = require('../schema/cart');
+let Cart = require('../schema/cart');
 const Product = require('../schema/products');
 const cartCache = 'CART';
 

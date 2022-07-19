@@ -3,10 +3,8 @@ const produceJWT = require('../utils/produceJWT');
 const User = require('../schema/users');
 
 
-const register = (req, res) => {
-  User.sync()
-    .then(() => console.log('Success sync'))
-    .catch((err) => console.log(`Fail: ${err}`));
+const register = async (req, res) => {
+  await User.sync();
 
   if (req.body.password) {
     User.findOne({ where: { userName: req.body.userName } }).then((user) => {

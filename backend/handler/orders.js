@@ -1,6 +1,6 @@
 const Order = require('../schema/orders');
 const Product = require('../schema/products');
-const Cart = require('../schema/cart');
+let Cart = require('../schema/cart');
 const store = require('store2');
 
 const cartCache = 'CART';
@@ -30,6 +30,7 @@ const addOrder = async (req, res) => {
   Order.create({...req.body, products: `[${itemsId}]`})
     .then(() => {
       store.remove(cartCache)
+      Cart.length = 0;
       return res.status(201).send({
         message: 'successful',
       })
