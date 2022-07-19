@@ -1,41 +1,39 @@
 const supertest = require('supertest');
 const { expect } = require('chai');
-const { USER } = require('../../backend/db/config');
 
 const request = supertest('http://localhost:8080');
 
+let data = {
+  email: 'michael@gmail.com',
+  userName: 'michael',
+  password: 'michael',
+  name: 'Michael Georgisva',
+  birthDate: '2002-01-05'
+}
 let USER_ID = 0
 let PRODUCT_ID = 0
 let TOKEN = ''
 
 describe('Users', () => {
-  
-  // it('POST /user/register', (done) => {
-  //   const data = {
-  //     email: 'mybaby@gmail.com',
-  //     userName: 'mybaby',
-  //     password: 'mybaby',
-  //   }
+  it('POST /user/register', (done) => {
+    const userData = (function({email, userName, password}) { return {email, userName, password} })
 
-  //   request
-  //     .post('/user/register')
-  //     .send(data)
-  //     .end((err, res) => {
-  //       expect(res.status).to.eq(201);
-  //       expect(res.body.message).to.eq('successful');
-  //       done();
-  //     })
-  // })
+    request
+      .post('/user/register')
+      .send(userData(data))
+      .end((err, res) => {
+        expect(res.status).to.eq(201);
+        expect(res.body.message).to.eq('successful');
+        done();
+      })
+  })
 
   it('POST /user/login', (done) => {
-    const data = {
-      userName: 'mybaby',
-      password: 'mybaby',
-    }
+    const userData = (function({userName, password}) { return {userName, password} })
 
     request
       .post('/user/login')
-      .send(data)
+      .send(userData(data))
       .end((err, res) => {
         if (err) console.log(err);
         expect(res.status).to.eq(200);
@@ -61,15 +59,12 @@ describe('Users', () => {
   })
 
   it('PUT /user/:userId', (done) => {
-    const data = {
-      name: 'test',
-      birthDate: Date.now(),
-    }
+    const userData = (function({name, birthDate}) { return {name, birthDate: new Date(birthDate)} })
 
     request
       .put(`/user/${USER_ID}`)
       .set('Authorization', `Bearer ${TOKEN}`)
-      .send(data)
+      .send(userData(data))
       .end((err, res) => {
         if (err) console.log(err);
         expect(res.status).to.eq(200);
@@ -88,7 +83,7 @@ describe('Products', () => {
         expect(res.status).to.eq(200);
         expect(res.body.data).to.not.be.empty;
         expect(res.body.message).to.eq('successful');
-        PRODUCT_ID = res.body.data[Math.floor(Math.random()*12)]['id'];
+        PRODUCT_ID = res.body.data[Math.floor(Math.random()*12)].id;
         // console.log(PRODUCT_ID);
         done();
       })
